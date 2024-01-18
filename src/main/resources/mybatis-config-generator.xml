@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MyBatis-Generator 相关配置 -->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <property name="autoDelimitKeywords" value="true"/>
+        <!-- 字段加上引号 防止关键字冲突 -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!--覆盖生成XML文件-->
+        <!--<plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />-->
+        <!-- 生成的实体类添加toString()方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+        <!-- 不生成注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/house_leasing"
+                        userId="root"
+                        password="0096unicorn">
+        </jdbcConnection>
+
+        <javaModelGenerator targetProject="src/main/java"
+                            targetPackage="leasing.entity"/>
+
+        <sqlMapGenerator targetProject="src/main/resources"
+                         targetPackage="mapper"/>
+
+        <javaClientGenerator targetProject="src/main/java"
+                             targetPackage="leasing.dao"
+                             type="XMLMAPPER" />
+
+        <!-- tableName:数据库表名 domainObjectName:对应生成实体名称-->
+        <!--<table tableName="early_move_in_apply" domainObjectName="Early_move_in_apply"/>
+        <table tableName="leasing_process" domainObjectName="Leasing_process"/>
+        <table tableName="parking_spot" domainObjectName="Parking_spot"/>
+        <table tableName="payment_history" domainObjectName="Payment_history"/>
+        <table tableName="property" domainObjectName="Property"/>
+        <table tableName="rooms" domainObjectName="Rooms"/>
+        <table tableName="tour" domainObjectName="Tour"/>
+        <table tableName="user_info" domainObjectName="User_info"/>-->
+        <table tableName="price_approval" domainObjectName="Price_approval"/>
+        <table tableName="tenants" domainObjectName="Tenants"/>
+        <table tableName="log_info" domainObjectName="Log_info"/>
+        <table tableName="reference_document" domainObjectName="Reference_document"/>
+        <table tableName="history" domainObjectName="History"/>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leasing.dao.RoomsMapper">
+  <resultMap id="BaseResultMap" type="leasing.entity.Rooms">
+    <id column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="unit_id" jdbcType="VARCHAR" property="unitId" />
+    <result column="property_id" jdbcType="VARCHAR" property="propertyId" />
+    <result column="room_info" jdbcType="VARCHAR" property="roomInfo" />
+    <result column="bathroom_info" jdbcType="VARCHAR" property="bathroomInfo" />
+    <result column="baseline" jdbcType="INTEGER" property="baseline" />
+    <result column="official_price" jdbcType="INTEGER" property="officialPrice" />
+    <result column="private_bathroom" jdbcType="INTEGER" property="privateBathroom" />
+    <result column="rooms_number" jdbcType="INTEGER" property="roomsNumber" />
+    <result column="open_to_leasing" jdbcType="INTEGER" property="openToLeasing" />
+    <result column="available_for_register" jdbcType="INTEGER" property="availableForRegister" />
+    <result column="availability" jdbcType="VARCHAR" property="availability" />
+    <result column="details" jdbcType="VARCHAR" property="details" />
+    <result column="candidates_on_list" jdbcType="INTEGER" property="candidatesOnList" />
+    <result column="tenants_id" jdbcType="VARCHAR" property="tenantsId" />
+    <result column="application_status" jdbcType="VARCHAR" property="applicationStatus" />
+    <result column="reserce_status" jdbcType="VARCHAR" property="reserceStatus" />
+    <result column="contract_deposit_status" jdbcType="VARCHAR" property="contractDepositStatus" />
+    <result column="leasing_price" jdbcType="INTEGER" property="leasingPrice" />
+    <result column="deposit" jdbcType="INTEGER" property="deposit" />
+    <result column="move_in_date" jdbcType="DATE" property="moveInDate" />
+    <result column="move_out_date" jdbcType="DATE" property="moveOutDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    room_id, unit_id, property_id, room_info, bathroom_info, baseline, official_price, 
+    private_bathroom, rooms_number, open_to_leasing, available_for_register, availability, 
+    details, candidates_on_list, tenants_id, application_status, reserce_status, contract_deposit_status, 
+    leasing_price, deposit, move_in_date, move_out_date
+  </sql>
+  <select id="selectByExample" parameterType="leasing.entity.RoomsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rooms
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rooms
+    where room_id = #{roomId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from rooms
+    where room_id = #{roomId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="leasing.entity.RoomsExample">
+    delete from rooms
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="leasing.entity.Rooms">
+    insert into rooms (room_id, unit_id, property_id, 
+      room_info, bathroom_info, baseline, 
+      official_price, private_bathroom, rooms_number, 
+      open_to_leasing, available_for_register, availability, 
+      details, candidates_on_list, tenants_id, 
+      application_status, reserce_status, contract_deposit_status, 
+      leasing_price, deposit, move_in_date, 
+      move_out_date)
+    values (#{roomId,jdbcType=VARCHAR}, #{unitId,jdbcType=VARCHAR}, #{propertyId,jdbcType=VARCHAR}, 
+      #{roomInfo,jdbcType=VARCHAR}, #{bathroomInfo,jdbcType=VARCHAR}, #{baseline,jdbcType=INTEGER}, 
+      #{officialPrice,jdbcType=INTEGER}, #{privateBathroom,jdbcType=INTEGER}, #{roomsNumber,jdbcType=INTEGER}, 
+      #{openToLeasing,jdbcType=INTEGER}, #{availableForRegister,jdbcType=INTEGER}, #{availability,jdbcType=VARCHAR}, 
+      #{details,jdbcType=VARCHAR}, #{candidatesOnList,jdbcType=INTEGER}, #{tenantsId,jdbcType=VARCHAR}, 
+      #{applicationStatus,jdbcType=VARCHAR}, #{reserceStatus,jdbcType=VARCHAR}, #{contractDepositStatus,jdbcType=VARCHAR}, 
+      #{leasingPrice,jdbcType=INTEGER}, #{deposit,jdbcType=INTEGER}, #{moveInDate,jdbcType=DATE}, 
+      #{moveOutDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="leasing.entity.Rooms">
+    insert into rooms
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
+      <if test="propertyId != null">
+        property_id,
+      </if>
+      <if test="roomInfo != null">
+        room_info,
+      </if>
+      <if test="bathroomInfo != null">
+        bathroom_info,
+      </if>
+      <if test="baseline != null">
+        baseline,
+      </if>
+      <if test="officialPrice != null">
+        official_price,
+      </if>
+      <if test="privateBathroom != null">
+        private_bathroom,
+      </if>
+      <if test="roomsNumber != null">
+        rooms_number,
+      </if>
+      <if test="openToLeasing != null">
+        open_to_leasing,
+      </if>
+      <if test="availableForRegister != null">
+        available_for_register,
+      </if>
+      <if test="availability != null">
+        availability,
+      </if>
+      <if test="details != null">
+        details,
+      </if>
+      <if test="candidatesOnList != null">
+        candidates_on_list,
+      </if>
+      <if test="tenantsId != null">
+        tenants_id,
+      </if>
+      <if test="applicationStatus != null">
+        application_status,
+      </if>
+      <if test="reserceStatus != null">
+        reserce_status,
+      </if>
+      <if test="contractDepositStatus != null">
+        contract_deposit_status,
+      </if>
+      <if test="leasingPrice != null">
+        leasing_price,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="moveInDate != null">
+        move_in_date,
+      </if>
+      <if test="moveOutDate != null">
+        move_out_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roomId != null">
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyId != null">
+        #{propertyId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomInfo != null">
+        #{roomInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bathroomInfo != null">
+        #{bathroomInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="baseline != null">
+        #{baseline,jdbcType=INTEGER},
+      </if>
+      <if test="officialPrice != null">
+        #{officialPrice,jdbcType=INTEGER},
+      </if>
+      <if test="privateBathroom != null">
+        #{privateBathroom,jdbcType=INTEGER},
+      </if>
+      <if test="roomsNumber != null">
+        #{roomsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="openToLeasing != null">
+        #{openToLeasing,jdbcType=INTEGER},
+      </if>
+      <if test="availableForRegister != null">
+        #{availableForRegister,jdbcType=INTEGER},
+      </if>
+      <if test="availability != null">
+        #{availability,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="candidatesOnList != null">
+        #{candidatesOnList,jdbcType=INTEGER},
+      </if>
+      <if test="tenantsId != null">
+        #{tenantsId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationStatus != null">
+        #{applicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reserceStatus != null">
+        #{reserceStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDepositStatus != null">
+        #{contractDepositStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="leasingPrice != null">
+        #{leasingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="moveInDate != null">
+        #{moveInDate,jdbcType=DATE},
+      </if>
+      <if test="moveOutDate != null">
+        #{moveOutDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="leasing.entity.RoomsExample" resultType="java.lang.Long">
+    select count(*) from rooms
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update rooms
+    <set>
+      <if test="record.roomId != null">
+        room_id = #{record.roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitId != null">
+        unit_id = #{record.unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyId != null">
+        property_id = #{record.propertyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomInfo != null">
+        room_info = #{record.roomInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bathroomInfo != null">
+        bathroom_info = #{record.bathroomInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseline != null">
+        baseline = #{record.baseline,jdbcType=INTEGER},
+      </if>
+      <if test="record.officialPrice != null">
+        official_price = #{record.officialPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.privateBathroom != null">
+        private_bathroom = #{record.privateBathroom,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomsNumber != null">
+        rooms_number = #{record.roomsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.openToLeasing != null">
+        open_to_leasing = #{record.openToLeasing,jdbcType=INTEGER},
+      </if>
+      <if test="record.availableForRegister != null">
+        available_for_register = #{record.availableForRegister,jdbcType=INTEGER},
+      </if>
+      <if test="record.availability != null">
+        availability = #{record.availability,jdbcType=VARCHAR},
+      </if>
+      <if test="record.details != null">
+        details = #{record.details,jdbcType=VARCHAR},
+      </if>
+      <if test="record.candidatesOnList != null">
+        candidates_on_list = #{record.candidatesOnList,jdbcType=INTEGER},
+      </if>
+      <if test="record.tenantsId != null">
+        tenants_id = #{record.tenantsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicationStatus != null">
+        application_status = #{record.applicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reserceStatus != null">
+        reserce_status = #{record.reserceStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractDepositStatus != null">
+        contract_deposit_status = #{record.contractDepositStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leasingPrice != null">
+        leasing_price = #{record.leasingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.deposit != null">
+        deposit = #{record.deposit,jdbcType=INTEGER},
+      </if>
+      <if test="record.moveInDate != null">
+        move_in_date = #{record.moveInDate,jdbcType=DATE},
+      </if>
+      <if test="record.moveOutDate != null">
+        move_out_date = #{record.moveOutDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update rooms
+    set room_id = #{record.roomId,jdbcType=VARCHAR},
+      unit_id = #{record.unitId,jdbcType=VARCHAR},
+      property_id = #{record.propertyId,jdbcType=VARCHAR},
+      room_info = #{record.roomInfo,jdbcType=VARCHAR},
+      bathroom_info = #{record.bathroomInfo,jdbcType=VARCHAR},
+      baseline = #{record.baseline,jdbcType=INTEGER},
+      official_price = #{record.officialPrice,jdbcType=INTEGER},
+      private_bathroom = #{record.privateBathroom,jdbcType=INTEGER},
+      rooms_number = #{record.roomsNumber,jdbcType=INTEGER},
+      open_to_leasing = #{record.openToLeasing,jdbcType=INTEGER},
+      available_for_register = #{record.availableForRegister,jdbcType=INTEGER},
+      availability = #{record.availability,jdbcType=VARCHAR},
+      details = #{record.details,jdbcType=VARCHAR},
+      candidates_on_list = #{record.candidatesOnList,jdbcType=INTEGER},
+      tenants_id = #{record.tenantsId,jdbcType=VARCHAR},
+      application_status = #{record.applicationStatus,jdbcType=VARCHAR},
+      reserce_status = #{record.reserceStatus,jdbcType=VARCHAR},
+      contract_deposit_status = #{record.contractDepositStatus,jdbcType=VARCHAR},
+      leasing_price = #{record.leasingPrice,jdbcType=INTEGER},
+      deposit = #{record.deposit,jdbcType=INTEGER},
+      move_in_date = #{record.moveInDate,jdbcType=DATE},
+      move_out_date = #{record.moveOutDate,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="leasing.entity.Rooms">
+    update rooms
+    <set>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyId != null">
+        property_id = #{propertyId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomInfo != null">
+        room_info = #{roomInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="bathroomInfo != null">
+        bathroom_info = #{bathroomInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="baseline != null">
+        baseline = #{baseline,jdbcType=INTEGER},
+      </if>
+      <if test="officialPrice != null">
+        official_price = #{officialPrice,jdbcType=INTEGER},
+      </if>
+      <if test="privateBathroom != null">
+        private_bathroom = #{privateBathroom,jdbcType=INTEGER},
+      </if>
+      <if test="roomsNumber != null">
+        rooms_number = #{roomsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="openToLeasing != null">
+        open_to_leasing = #{openToLeasing,jdbcType=INTEGER},
+      </if>
+      <if test="availableForRegister != null">
+        available_for_register = #{availableForRegister,jdbcType=INTEGER},
+      </if>
+      <if test="availability != null">
+        availability = #{availability,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="candidatesOnList != null">
+        candidates_on_list = #{candidatesOnList,jdbcType=INTEGER},
+      </if>
+      <if test="tenantsId != null">
+        tenants_id = #{tenantsId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationStatus != null">
+        application_status = #{applicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reserceStatus != null">
+        reserce_status = #{reserceStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractDepositStatus != null">
+        contract_deposit_status = #{contractDepositStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="leasingPrice != null">
+        leasing_price = #{leasingPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=INTEGER},
+      </if>
+      <if test="moveInDate != null">
+        move_in_date = #{moveInDate,jdbcType=DATE},
+      </if>
+      <if test="moveOutDate != null">
+        move_out_date = #{moveOutDate,jdbcType=DATE},
+      </if>
+    </set>
+    where room_id = #{roomId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="leasing.entity.Rooms">
+    update rooms
+    set unit_id = #{unitId,jdbcType=VARCHAR},
+      property_id = #{propertyId,jdbcType=VARCHAR},
+      room_info = #{roomInfo,jdbcType=VARCHAR},
+      bathroom_info = #{bathroomInfo,jdbcType=VARCHAR},
+      baseline = #{baseline,jdbcType=INTEGER},
+      official_price = #{officialPrice,jdbcType=INTEGER},
+      private_bathroom = #{privateBathroom,jdbcType=INTEGER},
+      rooms_number = #{roomsNumber,jdbcType=INTEGER},
+      open_to_leasing = #{openToLeasing,jdbcType=INTEGER},
+      available_for_register = #{availableForRegister,jdbcType=INTEGER},
+      availability = #{availability,jdbcType=VARCHAR},
+      details = #{details,jdbcType=VARCHAR},
+      candidates_on_list = #{candidatesOnList,jdbcType=INTEGER},
+      tenants_id = #{tenantsId,jdbcType=VARCHAR},
+      application_status = #{applicationStatus,jdbcType=VARCHAR},
+      reserce_status = #{reserceStatus,jdbcType=VARCHAR},
+      contract_deposit_status = #{contractDepositStatus,jdbcType=VARCHAR},
+      leasing_price = #{leasingPrice,jdbcType=INTEGER},
+      deposit = #{deposit,jdbcType=INTEGER},
+      move_in_date = #{moveInDate,jdbcType=DATE},
+      move_out_date = #{moveOutDate,jdbcType=DATE}
+    where room_id = #{roomId,jdbcType=VARCHAR}
+  </update>
+
+
+  <!--this is what Zideng add to the document-->
+  <select id="select_all_rooms_group_by_property_id_unit_id" parameterType="leasing.entity.RoomsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from rooms
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    group by room_id,property_id,unit_id
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

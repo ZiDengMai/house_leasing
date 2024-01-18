@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leasing.dao.Parking_spotMapper">
+  <resultMap id="BaseResultMap" type="leasing.entity.Parking_spot">
+    <id column="property_id" jdbcType="VARCHAR" property="propertyId" />
+    <result column="spot_number" jdbcType="INTEGER" property="spotNumber" />
+    <result column="leasing_id" jdbcType="INTEGER" property="leasingId" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+    <result column="make" jdbcType="VARCHAR" property="make" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="parking_spotcol" jdbcType="VARCHAR" property="parkingSpotcol" />
+    <result column="body_type" jdbcType="VARCHAR" property="bodyType" />
+    <result column="node" jdbcType="VARCHAR" property="node" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    property_id, spot_number, leasing_id, room_id, available, make, model, parking_spotcol, 
+    body_type, node
+  </sql>
+  <select id="selectByExample" parameterType="leasing.entity.Parking_spotExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from parking_spot
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from parking_spot
+    where property_id = #{propertyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from parking_spot
+    where property_id = #{propertyId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="leasing.entity.Parking_spotExample">
+    delete from parking_spot
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="leasing.entity.Parking_spot">
+    insert into parking_spot (property_id, spot_number, leasing_id, 
+      room_id, available, make, 
+      model, parking_spotcol, body_type, 
+      node)
+    values (#{propertyId,jdbcType=VARCHAR}, #{spotNumber,jdbcType=INTEGER}, #{leasingId,jdbcType=INTEGER}, 
+      #{roomId,jdbcType=VARCHAR}, #{available,jdbcType=INTEGER}, #{make,jdbcType=VARCHAR}, 
+      #{model,jdbcType=VARCHAR}, #{parkingSpotcol,jdbcType=VARCHAR}, #{bodyType,jdbcType=VARCHAR}, 
+      #{node,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="leasing.entity.Parking_spot">
+    insert into parking_spot
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="propertyId != null">
+        property_id,
+      </if>
+      <if test="spotNumber != null">
+        spot_number,
+      </if>
+      <if test="leasingId != null">
+        leasing_id,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+      <if test="make != null">
+        make,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+      <if test="parkingSpotcol != null">
+        parking_spotcol,
+      </if>
+      <if test="bodyType != null">
+        body_type,
+      </if>
+      <if test="node != null">
+        node,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="propertyId != null">
+        #{propertyId,jdbcType=VARCHAR},
+      </if>
+      <if test="spotNumber != null">
+        #{spotNumber,jdbcType=INTEGER},
+      </if>
+      <if test="leasingId != null">
+        #{leasingId,jdbcType=INTEGER},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=INTEGER},
+      </if>
+      <if test="make != null">
+        #{make,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="parkingSpotcol != null">
+        #{parkingSpotcol,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyType != null">
+        #{bodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="node != null">
+        #{node,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="leasing.entity.Parking_spotExample" resultType="java.lang.Long">
+    select count(*) from parking_spot
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update parking_spot
+    <set>
+      <if test="record.propertyId != null">
+        property_id = #{record.propertyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spotNumber != null">
+        spot_number = #{record.spotNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.leasingId != null">
+        leasing_id = #{record.leasingId,jdbcType=INTEGER},
+      </if>
+      <if test="record.roomId != null">
+        room_id = #{record.roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.available != null">
+        available = #{record.available,jdbcType=INTEGER},
+      </if>
+      <if test="record.make != null">
+        make = #{record.make,jdbcType=VARCHAR},
+      </if>
+      <if test="record.model != null">
+        model = #{record.model,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parkingSpotcol != null">
+        parking_spotcol = #{record.parkingSpotcol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bodyType != null">
+        body_type = #{record.bodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.node != null">
+        node = #{record.node,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update parking_spot
+    set property_id = #{record.propertyId,jdbcType=VARCHAR},
+      spot_number = #{record.spotNumber,jdbcType=INTEGER},
+      leasing_id = #{record.leasingId,jdbcType=INTEGER},
+      room_id = #{record.roomId,jdbcType=VARCHAR},
+      available = #{record.available,jdbcType=INTEGER},
+      make = #{record.make,jdbcType=VARCHAR},
+      model = #{record.model,jdbcType=VARCHAR},
+      parking_spotcol = #{record.parkingSpotcol,jdbcType=VARCHAR},
+      body_type = #{record.bodyType,jdbcType=VARCHAR},
+      node = #{record.node,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="leasing.entity.Parking_spot">
+    update parking_spot
+    <set>
+      <if test="spotNumber != null">
+        spot_number = #{spotNumber,jdbcType=INTEGER},
+      </if>
+      <if test="leasingId != null">
+        leasing_id = #{leasingId,jdbcType=INTEGER},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=INTEGER},
+      </if>
+      <if test="make != null">
+        make = #{make,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="parkingSpotcol != null">
+        parking_spotcol = #{parkingSpotcol,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyType != null">
+        body_type = #{bodyType,jdbcType=VARCHAR},
+      </if>
+      <if test="node != null">
+        node = #{node,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where property_id = #{propertyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="leasing.entity.Parking_spot">
+    update parking_spot
+    set spot_number = #{spotNumber,jdbcType=INTEGER},
+      leasing_id = #{leasingId,jdbcType=INTEGER},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      available = #{available,jdbcType=INTEGER},
+      make = #{make,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      parking_spotcol = #{parkingSpotcol,jdbcType=VARCHAR},
+      body_type = #{bodyType,jdbcType=VARCHAR},
+      node = #{node,jdbcType=VARCHAR}
+    where property_id = #{propertyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

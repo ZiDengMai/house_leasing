@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leasing.dao.Early_move_in_applyMapper">
+  <resultMap id="BaseResultMap" type="leasing.entity.Early_move_in_apply">
+    <id column="early_move_in_id" jdbcType="VARCHAR" property="earlyMoveInId" />
+    <result column="leasing_id" jdbcType="VARCHAR" property="leasingId" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
+    <result column="tenants_name" jdbcType="VARCHAR" property="tenantsName" />
+    <result column="tenants_email" jdbcType="VARCHAR" property="tenantsEmail" />
+    <result column="expected_move_in_date" jdbcType="DATE" property="expectedMoveInDate" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="assign_room_number" jdbcType="VARCHAR" property="assignRoomNumber" />
+    <result column="the_same_room_as_lease" jdbcType="VARCHAR" property="theSameRoomAsLease" />
+    <result column="submit_date" jdbcType="DATE" property="submitDate" />
+    <result column="service_fee" jdbcType="INTEGER" property="serviceFee" />
+    <result column="specialist_id" jdbcType="VARCHAR" property="specialistId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    early_move_in_id, leasing_id, room_id, tenants_name, tenants_email, expected_move_in_date, 
+    `status`, assign_room_number, the_same_room_as_lease, submit_date, service_fee, specialist_id
+  </sql>
+  <select id="selectByExample" parameterType="leasing.entity.Early_move_in_applyExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from early_move_in_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from early_move_in_apply
+    where early_move_in_id = #{earlyMoveInId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from early_move_in_apply
+    where early_move_in_id = #{earlyMoveInId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="leasing.entity.Early_move_in_applyExample">
+    delete from early_move_in_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="leasing.entity.Early_move_in_apply">
+    insert into early_move_in_apply (early_move_in_id, leasing_id, room_id, 
+      tenants_name, tenants_email, expected_move_in_date, 
+      `status`, assign_room_number, the_same_room_as_lease, 
+      submit_date, service_fee, specialist_id
+      )
+    values (#{earlyMoveInId,jdbcType=VARCHAR}, #{leasingId,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, 
+      #{tenantsName,jdbcType=VARCHAR}, #{tenantsEmail,jdbcType=VARCHAR}, #{expectedMoveInDate,jdbcType=DATE}, 
+      #{status,jdbcType=VARCHAR}, #{assignRoomNumber,jdbcType=VARCHAR}, #{theSameRoomAsLease,jdbcType=VARCHAR}, 
+      #{submitDate,jdbcType=DATE}, #{serviceFee,jdbcType=INTEGER}, #{specialistId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="leasing.entity.Early_move_in_apply">
+    insert into early_move_in_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="earlyMoveInId != null">
+        early_move_in_id,
+      </if>
+      <if test="leasingId != null">
+        leasing_id,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="tenantsName != null">
+        tenants_name,
+      </if>
+      <if test="tenantsEmail != null">
+        tenants_email,
+      </if>
+      <if test="expectedMoveInDate != null">
+        expected_move_in_date,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="assignRoomNumber != null">
+        assign_room_number,
+      </if>
+      <if test="theSameRoomAsLease != null">
+        the_same_room_as_lease,
+      </if>
+      <if test="submitDate != null">
+        submit_date,
+      </if>
+      <if test="serviceFee != null">
+        service_fee,
+      </if>
+      <if test="specialistId != null">
+        specialist_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="earlyMoveInId != null">
+        #{earlyMoveInId,jdbcType=VARCHAR},
+      </if>
+      <if test="leasingId != null">
+        #{leasingId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantsName != null">
+        #{tenantsName,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantsEmail != null">
+        #{tenantsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedMoveInDate != null">
+        #{expectedMoveInDate,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="assignRoomNumber != null">
+        #{assignRoomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="theSameRoomAsLease != null">
+        #{theSameRoomAsLease,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null">
+        #{submitDate,jdbcType=DATE},
+      </if>
+      <if test="serviceFee != null">
+        #{serviceFee,jdbcType=INTEGER},
+      </if>
+      <if test="specialistId != null">
+        #{specialistId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="leasing.entity.Early_move_in_applyExample" resultType="java.lang.Long">
+    select count(*) from early_move_in_apply
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update early_move_in_apply
+    <set>
+      <if test="record.earlyMoveInId != null">
+        early_move_in_id = #{record.earlyMoveInId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leasingId != null">
+        leasing_id = #{record.leasingId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomId != null">
+        room_id = #{record.roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenantsName != null">
+        tenants_name = #{record.tenantsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenantsEmail != null">
+        tenants_email = #{record.tenantsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expectedMoveInDate != null">
+        expected_move_in_date = #{record.expectedMoveInDate,jdbcType=DATE},
+      </if>
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assignRoomNumber != null">
+        assign_room_number = #{record.assignRoomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.theSameRoomAsLease != null">
+        the_same_room_as_lease = #{record.theSameRoomAsLease,jdbcType=VARCHAR},
+      </if>
+      <if test="record.submitDate != null">
+        submit_date = #{record.submitDate,jdbcType=DATE},
+      </if>
+      <if test="record.serviceFee != null">
+        service_fee = #{record.serviceFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.specialistId != null">
+        specialist_id = #{record.specialistId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update early_move_in_apply
+    set early_move_in_id = #{record.earlyMoveInId,jdbcType=VARCHAR},
+      leasing_id = #{record.leasingId,jdbcType=VARCHAR},
+      room_id = #{record.roomId,jdbcType=VARCHAR},
+      tenants_name = #{record.tenantsName,jdbcType=VARCHAR},
+      tenants_email = #{record.tenantsEmail,jdbcType=VARCHAR},
+      expected_move_in_date = #{record.expectedMoveInDate,jdbcType=DATE},
+      `status` = #{record.status,jdbcType=VARCHAR},
+      assign_room_number = #{record.assignRoomNumber,jdbcType=VARCHAR},
+      the_same_room_as_lease = #{record.theSameRoomAsLease,jdbcType=VARCHAR},
+      submit_date = #{record.submitDate,jdbcType=DATE},
+      service_fee = #{record.serviceFee,jdbcType=INTEGER},
+      specialist_id = #{record.specialistId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="leasing.entity.Early_move_in_apply">
+    update early_move_in_apply
+    <set>
+      <if test="leasingId != null">
+        leasing_id = #{leasingId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantsName != null">
+        tenants_name = #{tenantsName,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantsEmail != null">
+        tenants_email = #{tenantsEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedMoveInDate != null">
+        expected_move_in_date = #{expectedMoveInDate,jdbcType=DATE},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="assignRoomNumber != null">
+        assign_room_number = #{assignRoomNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="theSameRoomAsLease != null">
+        the_same_room_as_lease = #{theSameRoomAsLease,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null">
+        submit_date = #{submitDate,jdbcType=DATE},
+      </if>
+      <if test="serviceFee != null">
+        service_fee = #{serviceFee,jdbcType=INTEGER},
+      </if>
+      <if test="specialistId != null">
+        specialist_id = #{specialistId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where early_move_in_id = #{earlyMoveInId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="leasing.entity.Early_move_in_apply">
+    update early_move_in_apply
+    set leasing_id = #{leasingId,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      tenants_name = #{tenantsName,jdbcType=VARCHAR},
+      tenants_email = #{tenantsEmail,jdbcType=VARCHAR},
+      expected_move_in_date = #{expectedMoveInDate,jdbcType=DATE},
+      `status` = #{status,jdbcType=VARCHAR},
+      assign_room_number = #{assignRoomNumber,jdbcType=VARCHAR},
+      the_same_room_as_lease = #{theSameRoomAsLease,jdbcType=VARCHAR},
+      submit_date = #{submitDate,jdbcType=DATE},
+      service_fee = #{serviceFee,jdbcType=INTEGER},
+      specialist_id = #{specialistId,jdbcType=VARCHAR}
+    where early_move_in_id = #{earlyMoveInId,jdbcType=VARCHAR}
+  </update>
+</mapper>

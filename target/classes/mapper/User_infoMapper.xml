@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leasing.dao.User_infoMapper">
+  <resultMap id="BaseResultMap" type="leasing.entity.User_info">
+    <id column="email" jdbcType="VARCHAR" property="email" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="earned" jdbcType="INTEGER" property="earned" />
+    <result column="performance" jdbcType="INTEGER" property="performance" />
+    <result column="money_is_almost_in_your_pocket" jdbcType="DOUBLE" property="moneyIsAlmostInYourPocket" />
+    <result column="leasing_in_process" jdbcType="INTEGER" property="leasingInProcess" />
+    <result column="balance" jdbcType="INTEGER" property="balance" />
+    <result column="change_price" jdbcType="INTEGER" property="changePrice" />
+    <result column="change_leasing_info" jdbcType="INTEGER" property="changeLeasingInfo" />
+    <result column="price_approve" jdbcType="INTEGER" property="priceApprove" />
+    <result column="confirm_reverse" jdbcType="INTEGER" property="confirmReverse" />
+    <result column="confirm_final" jdbcType="INTEGER" property="confirmFinal" />
+    <result column="tour_approval" jdbcType="INTEGER" property="tourApproval" />
+    <result column="parking_manage" jdbcType="INTEGER" property="parkingManage" />
+    <result column="admin_panel" jdbcType="INTEGER" property="adminPanel" />
+    <result column="salary_panel" jdbcType="INTEGER" property="salaryPanel" />
+    <result column="sorted_files_panel" jdbcType="INTEGER" property="sortedFilesPanel" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    email, `name`, earned, performance, money_is_almost_in_your_pocket, leasing_in_process, 
+    balance, change_price, change_leasing_info, price_approve, confirm_reverse, confirm_final, 
+    tour_approval, parking_manage, admin_panel, salary_panel, sorted_files_panel
+  </sql>
+  <select id="selectByExample" parameterType="leasing.entity.User_infoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where email = #{email,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_info
+    where email = #{email,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="leasing.entity.User_infoExample">
+    delete from user_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="leasing.entity.User_info">
+    insert into user_info (email, `name`, earned, 
+      performance, money_is_almost_in_your_pocket, 
+      leasing_in_process, balance, change_price, 
+      change_leasing_info, price_approve, confirm_reverse, 
+      confirm_final, tour_approval, parking_manage, 
+      admin_panel, salary_panel, sorted_files_panel
+      )
+    values (#{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{earned,jdbcType=INTEGER}, 
+      #{performance,jdbcType=INTEGER}, #{moneyIsAlmostInYourPocket,jdbcType=DOUBLE}, 
+      #{leasingInProcess,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, #{changePrice,jdbcType=INTEGER}, 
+      #{changeLeasingInfo,jdbcType=INTEGER}, #{priceApprove,jdbcType=INTEGER}, #{confirmReverse,jdbcType=INTEGER}, 
+      #{confirmFinal,jdbcType=INTEGER}, #{tourApproval,jdbcType=INTEGER}, #{parkingManage,jdbcType=INTEGER}, 
+      #{adminPanel,jdbcType=INTEGER}, #{salaryPanel,jdbcType=INTEGER}, #{sortedFilesPanel,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="leasing.entity.User_info">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="email != null">
+        email,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="earned != null">
+        earned,
+      </if>
+      <if test="performance != null">
+        performance,
+      </if>
+      <if test="moneyIsAlmostInYourPocket != null">
+        money_is_almost_in_your_pocket,
+      </if>
+      <if test="leasingInProcess != null">
+        leasing_in_process,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="changePrice != null">
+        change_price,
+      </if>
+      <if test="changeLeasingInfo != null">
+        change_leasing_info,
+      </if>
+      <if test="priceApprove != null">
+        price_approve,
+      </if>
+      <if test="confirmReverse != null">
+        confirm_reverse,
+      </if>
+      <if test="confirmFinal != null">
+        confirm_final,
+      </if>
+      <if test="tourApproval != null">
+        tour_approval,
+      </if>
+      <if test="parkingManage != null">
+        parking_manage,
+      </if>
+      <if test="adminPanel != null">
+        admin_panel,
+      </if>
+      <if test="salaryPanel != null">
+        salary_panel,
+      </if>
+      <if test="sortedFilesPanel != null">
+        sorted_files_panel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="earned != null">
+        #{earned,jdbcType=INTEGER},
+      </if>
+      <if test="performance != null">
+        #{performance,jdbcType=INTEGER},
+      </if>
+      <if test="moneyIsAlmostInYourPocket != null">
+        #{moneyIsAlmostInYourPocket,jdbcType=DOUBLE},
+      </if>
+      <if test="leasingInProcess != null">
+        #{leasingInProcess,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="changePrice != null">
+        #{changePrice,jdbcType=INTEGER},
+      </if>
+      <if test="changeLeasingInfo != null">
+        #{changeLeasingInfo,jdbcType=INTEGER},
+      </if>
+      <if test="priceApprove != null">
+        #{priceApprove,jdbcType=INTEGER},
+      </if>
+      <if test="confirmReverse != null">
+        #{confirmReverse,jdbcType=INTEGER},
+      </if>
+      <if test="confirmFinal != null">
+        #{confirmFinal,jdbcType=INTEGER},
+      </if>
+      <if test="tourApproval != null">
+        #{tourApproval,jdbcType=INTEGER},
+      </if>
+      <if test="parkingManage != null">
+        #{parkingManage,jdbcType=INTEGER},
+      </if>
+      <if test="adminPanel != null">
+        #{adminPanel,jdbcType=INTEGER},
+      </if>
+      <if test="salaryPanel != null">
+        #{salaryPanel,jdbcType=INTEGER},
+      </if>
+      <if test="sortedFilesPanel != null">
+        #{sortedFilesPanel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="leasing.entity.User_infoExample" resultType="java.lang.Long">
+    select count(*) from user_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_info
+    <set>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.earned != null">
+        earned = #{record.earned,jdbcType=INTEGER},
+      </if>
+      <if test="record.performance != null">
+        performance = #{record.performance,jdbcType=INTEGER},
+      </if>
+      <if test="record.moneyIsAlmostInYourPocket != null">
+        money_is_almost_in_your_pocket = #{record.moneyIsAlmostInYourPocket,jdbcType=DOUBLE},
+      </if>
+      <if test="record.leasingInProcess != null">
+        leasing_in_process = #{record.leasingInProcess,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=INTEGER},
+      </if>
+      <if test="record.changePrice != null">
+        change_price = #{record.changePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.changeLeasingInfo != null">
+        change_leasing_info = #{record.changeLeasingInfo,jdbcType=INTEGER},
+      </if>
+      <if test="record.priceApprove != null">
+        price_approve = #{record.priceApprove,jdbcType=INTEGER},
+      </if>
+      <if test="record.confirmReverse != null">
+        confirm_reverse = #{record.confirmReverse,jdbcType=INTEGER},
+      </if>
+      <if test="record.confirmFinal != null">
+        confirm_final = #{record.confirmFinal,jdbcType=INTEGER},
+      </if>
+      <if test="record.tourApproval != null">
+        tour_approval = #{record.tourApproval,jdbcType=INTEGER},
+      </if>
+      <if test="record.parkingManage != null">
+        parking_manage = #{record.parkingManage,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminPanel != null">
+        admin_panel = #{record.adminPanel,jdbcType=INTEGER},
+      </if>
+      <if test="record.salaryPanel != null">
+        salary_panel = #{record.salaryPanel,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortedFilesPanel != null">
+        sorted_files_panel = #{record.sortedFilesPanel,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_info
+    set email = #{record.email,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      earned = #{record.earned,jdbcType=INTEGER},
+      performance = #{record.performance,jdbcType=INTEGER},
+      money_is_almost_in_your_pocket = #{record.moneyIsAlmostInYourPocket,jdbcType=DOUBLE},
+      leasing_in_process = #{record.leasingInProcess,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=INTEGER},
+      change_price = #{record.changePrice,jdbcType=INTEGER},
+      change_leasing_info = #{record.changeLeasingInfo,jdbcType=INTEGER},
+      price_approve = #{record.priceApprove,jdbcType=INTEGER},
+      confirm_reverse = #{record.confirmReverse,jdbcType=INTEGER},
+      confirm_final = #{record.confirmFinal,jdbcType=INTEGER},
+      tour_approval = #{record.tourApproval,jdbcType=INTEGER},
+      parking_manage = #{record.parkingManage,jdbcType=INTEGER},
+      admin_panel = #{record.adminPanel,jdbcType=INTEGER},
+      salary_panel = #{record.salaryPanel,jdbcType=INTEGER},
+      sorted_files_panel = #{record.sortedFilesPanel,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="leasing.entity.User_info">
+    update user_info
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="earned != null">
+        earned = #{earned,jdbcType=INTEGER},
+      </if>
+      <if test="performance != null">
+        performance = #{performance,jdbcType=INTEGER},
+      </if>
+      <if test="moneyIsAlmostInYourPocket != null">
+        money_is_almost_in_your_pocket = #{moneyIsAlmostInYourPocket,jdbcType=DOUBLE},
+      </if>
+      <if test="leasingInProcess != null">
+        leasing_in_process = #{leasingInProcess,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=INTEGER},
+      </if>
+      <if test="changePrice != null">
+        change_price = #{changePrice,jdbcType=INTEGER},
+      </if>
+      <if test="changeLeasingInfo != null">
+        change_leasing_info = #{changeLeasingInfo,jdbcType=INTEGER},
+      </if>
+      <if test="priceApprove != null">
+        price_approve = #{priceApprove,jdbcType=INTEGER},
+      </if>
+      <if test="confirmReverse != null">
+        confirm_reverse = #{confirmReverse,jdbcType=INTEGER},
+      </if>
+      <if test="confirmFinal != null">
+        confirm_final = #{confirmFinal,jdbcType=INTEGER},
+      </if>
+      <if test="tourApproval != null">
+        tour_approval = #{tourApproval,jdbcType=INTEGER},
+      </if>
+      <if test="parkingManage != null">
+        parking_manage = #{parkingManage,jdbcType=INTEGER},
+      </if>
+      <if test="adminPanel != null">
+        admin_panel = #{adminPanel,jdbcType=INTEGER},
+      </if>
+      <if test="salaryPanel != null">
+        salary_panel = #{salaryPanel,jdbcType=INTEGER},
+      </if>
+      <if test="sortedFilesPanel != null">
+        sorted_files_panel = #{sortedFilesPanel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where email = #{email,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="leasing.entity.User_info">
+    update user_info
+    set `name` = #{name,jdbcType=VARCHAR},
+      earned = #{earned,jdbcType=INTEGER},
+      performance = #{performance,jdbcType=INTEGER},
+      money_is_almost_in_your_pocket = #{moneyIsAlmostInYourPocket,jdbcType=DOUBLE},
+      leasing_in_process = #{leasingInProcess,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=INTEGER},
+      change_price = #{changePrice,jdbcType=INTEGER},
+      change_leasing_info = #{changeLeasingInfo,jdbcType=INTEGER},
+      price_approve = #{priceApprove,jdbcType=INTEGER},
+      confirm_reverse = #{confirmReverse,jdbcType=INTEGER},
+      confirm_final = #{confirmFinal,jdbcType=INTEGER},
+      tour_approval = #{tourApproval,jdbcType=INTEGER},
+      parking_manage = #{parkingManage,jdbcType=INTEGER},
+      admin_panel = #{adminPanel,jdbcType=INTEGER},
+      salary_panel = #{salaryPanel,jdbcType=INTEGER},
+      sorted_files_panel = #{sortedFilesPanel,jdbcType=INTEGER}
+    where email = #{email,jdbcType=VARCHAR}
+  </update>
+</mapper>
