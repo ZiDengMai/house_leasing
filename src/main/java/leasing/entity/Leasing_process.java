@@ -11,6 +11,8 @@ public class Leasing_process {
 
     private String lable;
 
+    private String roomId;
+
     private Integer isTopPriority;
 
     private String leasingInfo;
@@ -81,6 +83,14 @@ public class Leasing_process {
 
     public void setLable(String lable) {
         this.lable = lable;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
     }
 
     public Integer getIsTopPriority() {
@@ -253,6 +263,7 @@ public class Leasing_process {
         sb.append(", tenantsId=").append(tenantsId);
         sb.append(", status=").append(status);
         sb.append(", lable=").append(lable);
+        sb.append(", roomId=").append(roomId);
         sb.append(", isTopPriority=").append(isTopPriority);
         sb.append(", leasingInfo=").append(leasingInfo);
         sb.append(", moveInDate=").append(moveInDate);

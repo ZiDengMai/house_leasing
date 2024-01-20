@@ -3,8 +3,10 @@ package leasing.dao;
 import java.util.List;
 import leasing.entity.Log_info;
 import leasing.entity.Log_infoExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface Log_infoMapper {
     long countByExample(Log_infoExample example);
 

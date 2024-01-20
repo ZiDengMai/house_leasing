@@ -6,6 +6,7 @@
     <result column="tenants_id" jdbcType="VARCHAR" property="tenantsId" />
     <result column="status" jdbcType="VARCHAR" property="status" />
     <result column="lable" jdbcType="VARCHAR" property="lable" />
+    <result column="room_id" jdbcType="VARCHAR" property="roomId" />
     <result column="is_top_priority" jdbcType="INTEGER" property="isTopPriority" />
     <result column="leasing_info" jdbcType="VARCHAR" property="leasingInfo" />
     <result column="move_in_date" jdbcType="DATE" property="moveInDate" />
@@ -86,10 +87,11 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    process_id, tenants_id, `status`, lable, is_top_priority, leasing_info, move_in_date, 
-    move_out_date, leasing_price, deposit_amount, negotiate_comission, specialist, application_page, 
-    application_status, apply_submit_date, id_or_visa, i20, ssn, application_fee, final_page, 
-    lease_status, lease_comfirm_date, contract, deposit_fee
+    process_id, tenants_id, `status`, lable, room_id, is_top_priority, leasing_info, 
+    move_in_date, move_out_date, leasing_price, deposit_amount, negotiate_comission, 
+    specialist, application_page, application_status, apply_submit_date, id_or_visa, 
+    i20, ssn, application_fee, final_page, lease_status, lease_comfirm_date, contract, 
+    deposit_fee
   </sql>
   <select id="selectByExample" parameterType="leasing.entity.Leasing_processExample" resultMap="BaseResultMap">
     select
@@ -123,23 +125,23 @@
   </delete>
   <insert id="insert" parameterType="leasing.entity.Leasing_process">
     insert into leasing_process (process_id, tenants_id, `status`, 
-      lable, is_top_priority, leasing_info, 
-      move_in_date, move_out_date, leasing_price, 
-      deposit_amount, negotiate_comission, specialist, 
-      application_page, application_status, apply_submit_date, 
-      id_or_visa, i20, ssn, 
-      application_fee, final_page, lease_status, 
-      lease_comfirm_date, contract, deposit_fee
-      )
+      lable, room_id, is_top_priority, 
+      leasing_info, move_in_date, move_out_date, 
+      leasing_price, deposit_amount, negotiate_comission, 
+      specialist, application_page, application_status, 
+      apply_submit_date, id_or_visa, i20, 
+      ssn, application_fee, final_page, 
+      lease_status, lease_comfirm_date, contract, 
+      deposit_fee)
     values (#{processId,jdbcType=VARCHAR}, #{tenantsId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
-      #{lable,jdbcType=VARCHAR}, #{isTopPriority,jdbcType=INTEGER}, #{leasingInfo,jdbcType=VARCHAR}, 
-      #{moveInDate,jdbcType=DATE}, #{moveOutDate,jdbcType=DATE}, #{leasingPrice,jdbcType=INTEGER}, 
-      #{depositAmount,jdbcType=INTEGER}, #{negotiateComission,jdbcType=DOUBLE}, #{specialist,jdbcType=VARCHAR}, 
-      #{applicationPage,jdbcType=VARCHAR}, #{applicationStatus,jdbcType=VARCHAR}, #{applySubmitDate,jdbcType=DATE}, 
-      #{idOrVisa,jdbcType=INTEGER}, #{i20,jdbcType=VARCHAR}, #{ssn,jdbcType=VARCHAR}, 
-      #{applicationFee,jdbcType=INTEGER}, #{finalPage,jdbcType=VARCHAR}, #{leaseStatus,jdbcType=VARCHAR}, 
-      #{leaseComfirmDate,jdbcType=DATE}, #{contract,jdbcType=VARCHAR}, #{depositFee,jdbcType=INTEGER}
-      )
+      #{lable,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, #{isTopPriority,jdbcType=INTEGER}, 
+      #{leasingInfo,jdbcType=VARCHAR}, #{moveInDate,jdbcType=DATE}, #{moveOutDate,jdbcType=DATE}, 
+      #{leasingPrice,jdbcType=INTEGER}, #{depositAmount,jdbcType=INTEGER}, #{negotiateComission,jdbcType=DOUBLE}, 
+      #{specialist,jdbcType=VARCHAR}, #{applicationPage,jdbcType=VARCHAR}, #{applicationStatus,jdbcType=VARCHAR}, 
+      #{applySubmitDate,jdbcType=DATE}, #{idOrVisa,jdbcType=INTEGER}, #{i20,jdbcType=VARCHAR}, 
+      #{ssn,jdbcType=VARCHAR}, #{applicationFee,jdbcType=INTEGER}, #{finalPage,jdbcType=VARCHAR}, 
+      #{leaseStatus,jdbcType=VARCHAR}, #{leaseComfirmDate,jdbcType=DATE}, #{contract,jdbcType=VARCHAR}, 
+      #{depositFee,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="leasing.entity.Leasing_process">
     insert into leasing_process
@@ -155,6 +157,9 @@
       </if>
       <if test="lable != null">
         lable,
+      </if>
+      <if test="roomId != null">
+        room_id,
       </if>
       <if test="isTopPriority != null">
         is_top_priority,
@@ -229,6 +234,9 @@
       </if>
       <if test="lable != null">
         #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=VARCHAR},
       </if>
       <if test="isTopPriority != null">
         #{isTopPriority,jdbcType=INTEGER},
@@ -313,6 +321,9 @@
       <if test="record.lable != null">
         lable = #{record.lable,jdbcType=VARCHAR},
       </if>
+      <if test="record.roomId != null">
+        room_id = #{record.roomId,jdbcType=VARCHAR},
+      </if>
       <if test="record.isTopPriority != null">
         is_top_priority = #{record.isTopPriority,jdbcType=INTEGER},
       </if>
@@ -384,6 +395,7 @@
       tenants_id = #{record.tenantsId,jdbcType=VARCHAR},
       `status` = #{record.status,jdbcType=VARCHAR},
       lable = #{record.lable,jdbcType=VARCHAR},
+      room_id = #{record.roomId,jdbcType=VARCHAR},
       is_top_priority = #{record.isTopPriority,jdbcType=INTEGER},
       leasing_info = #{record.leasingInfo,jdbcType=VARCHAR},
       move_in_date = #{record.moveInDate,jdbcType=DATE},
@@ -419,6 +431,9 @@
       </if>
       <if test="lable != null">
         lable = #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=VARCHAR},
       </if>
       <if test="isTopPriority != null">
         is_top_priority = #{isTopPriority,jdbcType=INTEGER},
@@ -488,6 +503,7 @@
     set tenants_id = #{tenantsId,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=VARCHAR},
       lable = #{lable,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
       is_top_priority = #{isTopPriority,jdbcType=INTEGER},
       leasing_info = #{leasingInfo,jdbcType=VARCHAR},
       move_in_date = #{moveInDate,jdbcType=DATE},
@@ -510,4 +526,5 @@
       deposit_fee = #{depositFee,jdbcType=INTEGER}
     where process_id = #{processId,jdbcType=VARCHAR}
   </update>
+
 </mapper>

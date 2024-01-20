@@ -3,8 +3,10 @@ package leasing.dao;
 import java.util.List;
 import leasing.entity.Reference_document;
 import leasing.entity.Reference_documentExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface Reference_documentMapper {
     long countByExample(Reference_documentExample example);
 

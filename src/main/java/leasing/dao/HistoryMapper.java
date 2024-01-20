@@ -3,8 +3,10 @@ package leasing.dao;
 import java.util.List;
 import leasing.entity.History;
 import leasing.entity.HistoryExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface HistoryMapper {
     long countByExample(HistoryExample example);
 

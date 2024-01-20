@@ -20,8 +20,6 @@ public interface RoomsMapper {
 
     List<Rooms> selectByExample(RoomsExample example);
 
-    List<Rooms> select_all_rooms_group_by_property_id_unit_id(RoomsExample example);
-
     Rooms selectByPrimaryKey(String roomId);
 
     int updateByExampleSelective(@Param("record") Rooms record, @Param("example") RoomsExample example);

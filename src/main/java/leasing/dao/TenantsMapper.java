@@ -3,8 +3,10 @@ package leasing.dao;
 import java.util.List;
 import leasing.entity.Tenants;
 import leasing.entity.TenantsExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface TenantsMapper {
     long countByExample(TenantsExample example);
 

@@ -24,9 +24,11 @@ public class RoomsService {
     }
 
     public List<Rooms> select_all_rooms_group_by_property_id_unit_id(){
+        //test
         RoomsExample roomsExample=new RoomsExample();
         Criteria criteria=roomsExample.createCriteria();
         roomsExample.setOrderByClause("property_id ASC,unit_id ASC");
-        return roomsMapper.select_all_rooms_group_by_property_id_unit_id(roomsExample);
+        return roomsMapper.selectByExample(roomsExample);
     }
+
 }

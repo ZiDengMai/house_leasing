@@ -479,21 +479,4 @@
     where room_id = #{roomId,jdbcType=VARCHAR}
   </update>
 
-
-  <!--this is what Zideng add to the document-->
-  <select id="select_all_rooms_group_by_property_id_unit_id" parameterType="leasing.entity.RoomsExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from rooms
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    group by room_id,property_id,unit_id
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
 </mapper>

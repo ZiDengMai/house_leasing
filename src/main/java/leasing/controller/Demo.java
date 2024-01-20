@@ -15,14 +15,15 @@ public class Demo {
     @Autowired
     RoomsService roomsService;
 
-    /*@RequestMapping("/demo")
-    public String helloWorld(){
-        return "hello world";
-    }*/
-
     @RequestMapping("/demo")
     @ResponseBody
     public List<Rooms> select_rooms_by_room_id(){
+        return roomsService.select_rooms_by_room_id("1410 A1-1");
+    }
+
+    @RequestMapping("/t")
+    @ResponseBody
+    public List<Rooms> test(){
         return roomsService.select_rooms_by_room_id("1410 A1-1");
     }
 }
