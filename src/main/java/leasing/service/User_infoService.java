@@ -16,4 +16,10 @@ public class User_infoService {
     public List<User_info> get_all_user_info(){
         return user_infoMapper.selectByExample(new User_infoExample());
     }
+
+    public List<User_info> getUser_infoByMail(String email){
+        User_infoExample user_infoExample=new User_infoExample();
+        user_infoExample.createCriteria().andEmailEqualTo(email);
+        return user_infoMapper.selectByExample(user_infoExample);
+    }
 }
