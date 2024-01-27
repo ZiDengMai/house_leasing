@@ -7,6 +7,8 @@ public class Log_info {
 
     private String tenantsId;
 
+    private String processId;
+
     private String type;
 
     private String note;
@@ -29,6 +31,14 @@ public class Log_info {
 
     public void setTenantsId(String tenantsId) {
         this.tenantsId = tenantsId;
+    }
+
+    public String getProcessId() {
+        return processId;
+    }
+
+    public void setProcessId(String processId) {
+        this.processId = processId;
     }
 
     public String getType() {
@@ -71,6 +81,7 @@ public class Log_info {
         sb.append("Hash = ").append(hashCode());
         sb.append(", logId=").append(logId);
         sb.append(", tenantsId=").append(tenantsId);
+        sb.append(", processId=").append(processId);
         sb.append(", type=").append(type);
         sb.append(", note=").append(note);
         sb.append(", timeStamp=").append(timeStamp);

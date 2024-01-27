@@ -1771,6 +1771,336 @@ public class Leasing_processExample {
             addCriterion("deposit_fee not between", value1, value2, "depositFee");
             return (Criteria) this;
         }
+
+        public Criteria andAdminPageIsNull() {
+            addCriterion("admin_page is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageIsNotNull() {
+            addCriterion("admin_page is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageEqualTo(String value) {
+            addCriterion("admin_page =", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageNotEqualTo(String value) {
+            addCriterion("admin_page <>", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageGreaterThan(String value) {
+            addCriterion("admin_page >", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageGreaterThanOrEqualTo(String value) {
+            addCriterion("admin_page >=", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageLessThan(String value) {
+            addCriterion("admin_page <", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageLessThanOrEqualTo(String value) {
+            addCriterion("admin_page <=", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageLike(String value) {
+            addCriterion("admin_page like", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageNotLike(String value) {
+            addCriterion("admin_page not like", value, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageIn(List<String> values) {
+            addCriterion("admin_page in", values, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageNotIn(List<String> values) {
+            addCriterion("admin_page not in", values, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageBetween(String value1, String value2) {
+            addCriterion("admin_page between", value1, value2, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminPageNotBetween(String value1, String value2) {
+            addCriterion("admin_page not between", value1, value2, "adminPage");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusIsNull() {
+            addCriterion("admin_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusIsNotNull() {
+            addCriterion("admin_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusEqualTo(String value) {
+            addCriterion("admin_status =", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusNotEqualTo(String value) {
+            addCriterion("admin_status <>", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusGreaterThan(String value) {
+            addCriterion("admin_status >", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("admin_status >=", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusLessThan(String value) {
+            addCriterion("admin_status <", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusLessThanOrEqualTo(String value) {
+            addCriterion("admin_status <=", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusLike(String value) {
+            addCriterion("admin_status like", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusNotLike(String value) {
+            addCriterion("admin_status not like", value, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusIn(List<String> values) {
+            addCriterion("admin_status in", values, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusNotIn(List<String> values) {
+            addCriterion("admin_status not in", values, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusBetween(String value1, String value2) {
+            addCriterion("admin_status between", value1, value2, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminStatusNotBetween(String value1, String value2) {
+            addCriterion("admin_status not between", value1, value2, "adminStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateIsNull() {
+            addCriterion("reserve_submit_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateIsNotNull() {
+            addCriterion("reserve_submit_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateEqualTo(Date value) {
+            addCriterionForJDBCDate("reserve_submit_date =", value, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("reserve_submit_date <>", value, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("reserve_submit_date >", value, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("reserve_submit_date >=", value, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateLessThan(Date value) {
+            addCriterionForJDBCDate("reserve_submit_date <", value, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("reserve_submit_date <=", value, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateIn(List<Date> values) {
+            addCriterionForJDBCDate("reserve_submit_date in", values, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("reserve_submit_date not in", values, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("reserve_submit_date between", value1, value2, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andReserveSubmitDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("reserve_submit_date not between", value1, value2, "reserveSubmitDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractIsNull() {
+            addCriterion("admin_contract is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractIsNotNull() {
+            addCriterion("admin_contract is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractEqualTo(String value) {
+            addCriterion("admin_contract =", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractNotEqualTo(String value) {
+            addCriterion("admin_contract <>", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractGreaterThan(String value) {
+            addCriterion("admin_contract >", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractGreaterThanOrEqualTo(String value) {
+            addCriterion("admin_contract >=", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractLessThan(String value) {
+            addCriterion("admin_contract <", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractLessThanOrEqualTo(String value) {
+            addCriterion("admin_contract <=", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractLike(String value) {
+            addCriterion("admin_contract like", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractNotLike(String value) {
+            addCriterion("admin_contract not like", value, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractIn(List<String> values) {
+            addCriterion("admin_contract in", values, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractNotIn(List<String> values) {
+            addCriterion("admin_contract not in", values, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractBetween(String value1, String value2) {
+            addCriterion("admin_contract between", value1, value2, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminContractNotBetween(String value1, String value2) {
+            addCriterion("admin_contract not between", value1, value2, "adminContract");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeIsNull() {
+            addCriterion("admin_fee is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeIsNotNull() {
+            addCriterion("admin_fee is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeEqualTo(Integer value) {
+            addCriterion("admin_fee =", value, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeNotEqualTo(Integer value) {
+            addCriterion("admin_fee <>", value, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeGreaterThan(Integer value) {
+            addCriterion("admin_fee >", value, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("admin_fee >=", value, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeLessThan(Integer value) {
+            addCriterion("admin_fee <", value, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeLessThanOrEqualTo(Integer value) {
+            addCriterion("admin_fee <=", value, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeIn(List<Integer> values) {
+            addCriterion("admin_fee in", values, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeNotIn(List<Integer> values) {
+            addCriterion("admin_fee not in", values, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeBetween(Integer value1, Integer value2) {
+            addCriterion("admin_fee between", value1, value2, "adminFee");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdminFeeNotBetween(Integer value1, Integer value2) {
+            addCriterion("admin_fee not between", value1, value2, "adminFee");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

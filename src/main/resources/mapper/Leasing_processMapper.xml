@@ -27,6 +27,11 @@
     <result column="lease_comfirm_date" jdbcType="DATE" property="leaseComfirmDate" />
     <result column="contract" jdbcType="VARCHAR" property="contract" />
     <result column="deposit_fee" jdbcType="INTEGER" property="depositFee" />
+    <result column="admin_page" jdbcType="VARCHAR" property="adminPage" />
+    <result column="admin_status" jdbcType="VARCHAR" property="adminStatus" />
+    <result column="reserve_submit_date" jdbcType="DATE" property="reserveSubmitDate" />
+    <result column="admin_contract" jdbcType="VARCHAR" property="adminContract" />
+    <result column="admin_fee" jdbcType="INTEGER" property="adminFee" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -91,7 +96,7 @@
     move_in_date, move_out_date, leasing_price, deposit_amount, negotiate_comission, 
     specialist, application_page, application_status, apply_submit_date, id_or_visa, 
     i20, ssn, application_fee, final_page, lease_status, lease_comfirm_date, contract, 
-    deposit_fee
+    deposit_fee, admin_page, admin_status, reserve_submit_date, admin_contract, admin_fee
   </sql>
   <select id="selectByExample" parameterType="leasing.entity.Leasing_processExample" resultMap="BaseResultMap">
     select
@@ -132,7 +137,9 @@
       apply_submit_date, id_or_visa, i20, 
       ssn, application_fee, final_page, 
       lease_status, lease_comfirm_date, contract, 
-      deposit_fee)
+      deposit_fee, admin_page, admin_status, 
+      reserve_submit_date, admin_contract, admin_fee
+      )
     values (#{processId,jdbcType=VARCHAR}, #{tenantsId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{lable,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, #{isTopPriority,jdbcType=INTEGER}, 
       #{leasingInfo,jdbcType=VARCHAR}, #{moveInDate,jdbcType=DATE}, #{moveOutDate,jdbcType=DATE}, 
@@ -141,7 +148,9 @@
       #{applySubmitDate,jdbcType=DATE}, #{idOrVisa,jdbcType=INTEGER}, #{i20,jdbcType=VARCHAR}, 
       #{ssn,jdbcType=VARCHAR}, #{applicationFee,jdbcType=INTEGER}, #{finalPage,jdbcType=VARCHAR}, 
       #{leaseStatus,jdbcType=VARCHAR}, #{leaseComfirmDate,jdbcType=DATE}, #{contract,jdbcType=VARCHAR}, 
-      #{depositFee,jdbcType=INTEGER})
+      #{depositFee,jdbcType=INTEGER}, #{adminPage,jdbcType=VARCHAR}, #{adminStatus,jdbcType=VARCHAR}, 
+      #{reserveSubmitDate,jdbcType=DATE}, #{adminContract,jdbcType=VARCHAR}, #{adminFee,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="leasing.entity.Leasing_process">
     insert into leasing_process
@@ -221,6 +230,21 @@
       <if test="depositFee != null">
         deposit_fee,
       </if>
+      <if test="adminPage != null">
+        admin_page,
+      </if>
+      <if test="adminStatus != null">
+        admin_status,
+      </if>
+      <if test="reserveSubmitDate != null">
+        reserve_submit_date,
+      </if>
+      <if test="adminContract != null">
+        admin_contract,
+      </if>
+      <if test="adminFee != null">
+        admin_fee,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="processId != null">
@@ -297,6 +321,21 @@
       </if>
       <if test="depositFee != null">
         #{depositFee,jdbcType=INTEGER},
+      </if>
+      <if test="adminPage != null">
+        #{adminPage,jdbcType=VARCHAR},
+      </if>
+      <if test="adminStatus != null">
+        #{adminStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveSubmitDate != null">
+        #{reserveSubmitDate,jdbcType=DATE},
+      </if>
+      <if test="adminContract != null">
+        #{adminContract,jdbcType=VARCHAR},
+      </if>
+      <if test="adminFee != null">
+        #{adminFee,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -384,6 +423,21 @@
       <if test="record.depositFee != null">
         deposit_fee = #{record.depositFee,jdbcType=INTEGER},
       </if>
+      <if test="record.adminPage != null">
+        admin_page = #{record.adminPage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminStatus != null">
+        admin_status = #{record.adminStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reserveSubmitDate != null">
+        reserve_submit_date = #{record.reserveSubmitDate,jdbcType=DATE},
+      </if>
+      <if test="record.adminContract != null">
+        admin_contract = #{record.adminContract,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminFee != null">
+        admin_fee = #{record.adminFee,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -415,7 +469,12 @@
       lease_status = #{record.leaseStatus,jdbcType=VARCHAR},
       lease_comfirm_date = #{record.leaseComfirmDate,jdbcType=DATE},
       contract = #{record.contract,jdbcType=VARCHAR},
-      deposit_fee = #{record.depositFee,jdbcType=INTEGER}
+      deposit_fee = #{record.depositFee,jdbcType=INTEGER},
+      admin_page = #{record.adminPage,jdbcType=VARCHAR},
+      admin_status = #{record.adminStatus,jdbcType=VARCHAR},
+      reserve_submit_date = #{record.reserveSubmitDate,jdbcType=DATE},
+      admin_contract = #{record.adminContract,jdbcType=VARCHAR},
+      admin_fee = #{record.adminFee,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -495,6 +554,21 @@
       <if test="depositFee != null">
         deposit_fee = #{depositFee,jdbcType=INTEGER},
       </if>
+      <if test="adminPage != null">
+        admin_page = #{adminPage,jdbcType=VARCHAR},
+      </if>
+      <if test="adminStatus != null">
+        admin_status = #{adminStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reserveSubmitDate != null">
+        reserve_submit_date = #{reserveSubmitDate,jdbcType=DATE},
+      </if>
+      <if test="adminContract != null">
+        admin_contract = #{adminContract,jdbcType=VARCHAR},
+      </if>
+      <if test="adminFee != null">
+        admin_fee = #{adminFee,jdbcType=INTEGER},
+      </if>
     </set>
     where process_id = #{processId,jdbcType=VARCHAR}
   </update>
@@ -523,8 +597,12 @@
       lease_status = #{leaseStatus,jdbcType=VARCHAR},
       lease_comfirm_date = #{leaseComfirmDate,jdbcType=DATE},
       contract = #{contract,jdbcType=VARCHAR},
-      deposit_fee = #{depositFee,jdbcType=INTEGER}
+      deposit_fee = #{depositFee,jdbcType=INTEGER},
+      admin_page = #{adminPage,jdbcType=VARCHAR},
+      admin_status = #{adminStatus,jdbcType=VARCHAR},
+      reserve_submit_date = #{reserveSubmitDate,jdbcType=DATE},
+      admin_contract = #{adminContract,jdbcType=VARCHAR},
+      admin_fee = #{adminFee,jdbcType=INTEGER}
     where process_id = #{processId,jdbcType=VARCHAR}
   </update>
-
 </mapper>

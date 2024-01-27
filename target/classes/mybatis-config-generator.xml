@@ -53,5 +53,6 @@
         <table tableName="log_info" domainObjectName="Log_info"/>
         <table tableName="reference_document" domainObjectName="Reference_document"/>
         <table tableName="history" domainObjectName="History"/>-->
+        <table tableName="log_info" domainObjectName="Log_info"/>
     </context>
 </generatorConfiguration>

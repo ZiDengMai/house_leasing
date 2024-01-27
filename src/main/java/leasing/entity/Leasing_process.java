@@ -53,6 +53,16 @@ public class Leasing_process {
 
     private Integer depositFee;
 
+    private String adminPage;
+
+    private String adminStatus;
+
+    private Date reserveSubmitDate;
+
+    private String adminContract;
+
+    private Integer adminFee;
+
     public String getProcessId() {
         return processId;
     }
@@ -253,6 +263,46 @@ public class Leasing_process {
         this.depositFee = depositFee;
     }
 
+    public String getAdminPage() {
+        return adminPage;
+    }
+
+    public void setAdminPage(String adminPage) {
+        this.adminPage = adminPage;
+    }
+
+    public String getAdminStatus() {
+        return adminStatus;
+    }
+
+    public void setAdminStatus(String adminStatus) {
+        this.adminStatus = adminStatus;
+    }
+
+    public Date getReserveSubmitDate() {
+        return reserveSubmitDate;
+    }
+
+    public void setReserveSubmitDate(Date reserveSubmitDate) {
+        this.reserveSubmitDate = reserveSubmitDate;
+    }
+
+    public String getAdminContract() {
+        return adminContract;
+    }
+
+    public void setAdminContract(String adminContract) {
+        this.adminContract = adminContract;
+    }
+
+    public Integer getAdminFee() {
+        return adminFee;
+    }
+
+    public void setAdminFee(Integer adminFee) {
+        this.adminFee = adminFee;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -284,6 +334,11 @@ public class Leasing_process {
         sb.append(", leaseComfirmDate=").append(leaseComfirmDate);
         sb.append(", contract=").append(contract);
         sb.append(", depositFee=").append(depositFee);
+        sb.append(", adminPage=").append(adminPage);
+        sb.append(", adminStatus=").append(adminStatus);
+        sb.append(", reserveSubmitDate=").append(reserveSubmitDate);
+        sb.append(", adminContract=").append(adminContract);
+        sb.append(", adminFee=").append(adminFee);
         sb.append("]");
         return sb.toString();
     }

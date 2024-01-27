@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="leasing.entity.Log_info">
     <id column="log_id" jdbcType="VARCHAR" property="logId" />
     <result column="tenants_id" jdbcType="VARCHAR" property="tenantsId" />
+    <result column="process_id" jdbcType="VARCHAR" property="processId" />
     <result column="type" jdbcType="VARCHAR" property="type" />
     <result column="note" jdbcType="VARCHAR" property="note" />
     <result column="time_stamp" jdbcType="TIMESTAMP" property="timeStamp" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    log_id, tenants_id, `type`, note, time_stamp, action_from
+    log_id, tenants_id, process_id, `type`, note, time_stamp, action_from
   </sql>
   <select id="selectByExample" parameterType="leasing.entity.Log_infoExample" resultMap="BaseResultMap">
     select
@@ -101,12 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="leasing.entity.Log_info">
-    insert into log_info (log_id, tenants_id, `type`, 
-      note, time_stamp, action_from
-      )
-    values (#{logId,jdbcType=VARCHAR}, #{tenantsId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{note,jdbcType=VARCHAR}, #{timeStamp,jdbcType=TIMESTAMP}, #{actionFrom,jdbcType=VARCHAR}
-      )
+    insert into log_info (log_id, tenants_id, process_id, 
+      `type`, note, time_stamp, 
+      action_from)
+    values (#{logId,jdbcType=VARCHAR}, #{tenantsId,jdbcType=VARCHAR}, #{processId,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{timeStamp,jdbcType=TIMESTAMP}, 
+      #{actionFrom,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="leasing.entity.Log_info">
     insert into log_info
@@ -116,6 +117,9 @@
       </if>
       <if test="tenantsId != null">
         tenants_id,
+      </if>
+      <if test="processId != null">
+        process_id,
       </if>
       <if test="type != null">
         `type`,
@@ -136,6 +140,9 @@
       </if>
       <if test="tenantsId != null">
         #{tenantsId,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null">
+        #{processId,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
@@ -166,6 +173,9 @@
       <if test="record.tenantsId != null">
         tenants_id = #{record.tenantsId,jdbcType=VARCHAR},
       </if>
+      <if test="record.processId != null">
+        process_id = #{record.processId,jdbcType=VARCHAR},
+      </if>
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=VARCHAR},
       </if>
@@ -187,6 +197,7 @@
     update log_info
     set log_id = #{record.logId,jdbcType=VARCHAR},
       tenants_id = #{record.tenantsId,jdbcType=VARCHAR},
+      process_id = #{record.processId,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=VARCHAR},
       note = #{record.note,jdbcType=VARCHAR},
       time_stamp = #{record.timeStamp,jdbcType=TIMESTAMP},
@@ -200,6 +211,9 @@
     <set>
       <if test="tenantsId != null">
         tenants_id = #{tenantsId,jdbcType=VARCHAR},
+      </if>
+      <if test="processId != null">
+        process_id = #{processId,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         `type` = #{type,jdbcType=VARCHAR},
@@ -219,6 +233,7 @@
   <update id="updateByPrimaryKey" parameterType="leasing.entity.Log_info">
     update log_info
     set tenants_id = #{tenantsId,jdbcType=VARCHAR},
+      process_id = #{processId,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=VARCHAR},
       note = #{note,jdbcType=VARCHAR},
       time_stamp = #{timeStamp,jdbcType=TIMESTAMP},
